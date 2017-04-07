@@ -22,7 +22,7 @@ test:
 	$(foreach exe, $(TEST_EXES), ./$(exe))
 
 clean :
-	rm -f $(TEST_DIR)/*.o $(TEST_DIR)/*.a $(SRC_DIR)/*.o $(TEST_EXES)
+	rm -f $(OBJS) $(TEST_DIR)/*.a $(TEST_OBJS) $(TEST_EXES)
 
 # Build a test library
 
