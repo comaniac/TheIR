@@ -105,3 +105,13 @@ TEST(DesignSpaceTest, Continuous) {
 
 }
 
+// Test discrete design space
+TEST(DesignSpaceTest, Discrete) {
+    vector<int> vec;
+    for (int i = 0; i < 10; i++)
+        vec.push_back(i);
+    DesignSpaceDist<int> ds(vec);
+
+    EXPECT_EQ(10, ds.getSize());
+    EXPECT_EQ(0, ds.getVal(0));
+}
