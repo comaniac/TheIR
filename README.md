@@ -1,13 +1,16 @@
-# The C-to-FPGA Compilation Framework
+# The Intermediate Representation for FPGA Compilation
 
 ### System Requirement
-0. Merlin compiler 2016.4 or above
-0. OpenTuner
+0. TBA
 
 ### Installation
 0. git clone this repository
 0. git submodule init
 0. git submodule update
+0. make
+0. make install
+
+### Compilation
 0. make
 0. make install
 
