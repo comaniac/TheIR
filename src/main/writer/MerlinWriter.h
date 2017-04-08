@@ -3,6 +3,7 @@
 #include <fstream>
 #include "WriterBase.h"
 #include "util/Logger.h"
+#include "ds/DesignSpaceCont.h"
 using namespace std;
 
 namespace TheIR {
@@ -10,9 +11,13 @@ namespace TheIR {
         public:
             MerlinWriter(string file_name): WriterBase(file_name) { }
 
-            void writeParallelPragma() {
-                ;
-            }
+            using WriterBase::write;
+
+            void write(Parallel &node);
+
+            void writeParallelPragma();
+
+            void writeParallelPragma(DesignSpaceCont<int> ds);
         private:
     };
 }

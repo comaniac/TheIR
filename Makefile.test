@@ -1,7 +1,7 @@
 ROOT      = ./$(LEVEL)
 GTEST_DIR = $(ROOT)/misc/googletest/googletest
 CPPFLAGS += -isystem $(GTEST_DIR)/include
-CXXFLAGS += -g -Wall -Wextra -pthread
+CXXFLAGS += -g -Wall -Wextra -pthread -std=c++11
 
 SRC_DIR := $(ROOT)/src/main/$(notdir $(shell pwd)) 
 SRCS := $(filter-out $(SRC_DIR)/main.cpp, $(wildcard $(SRC_DIR)/*.cpp))
@@ -22,7 +22,7 @@ test:
 	$(foreach exe, $(TEST_EXES), ./$(exe))
 
 clean :
-	rm -f $(OBJS) $(TEST_DIR)/*.a $(TEST_OBJS) $(TEST_EXES)
+	rm -f $(OBJS) $(TEST_DIR)/*.a $(TEST_OBJS) $(TEST_EXES) *.o
 
 # Build a test library
 

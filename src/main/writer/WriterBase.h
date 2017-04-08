@@ -1,6 +1,8 @@
 #ifndef _WRITER_BASE_H_
 #define _WRITER_BASE_H_
 #include <fstream>
+#include "ir/IR.h"
+#include "ir/schedule/Parallel.h"
 #include "util/Logger.h"
 using namespace std;
 
@@ -19,16 +21,11 @@ namespace TheIR {
                 file.close();
             }
 
-            void write(string str) {
-                file << str;
-            }
+            void write(string str) { file << str; }
 
-            void writeln(string str) {
-                file << str << endl;
-            }
+            void writeln(string str) { file << str << endl; }
 
-            void writeLoopHead(string var, int init, 
-                    int cond, int step);
+            virtual void write(Parallel &node) = 0;
 
         private:
             ofstream file;
