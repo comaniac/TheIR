@@ -18,7 +18,7 @@ void MerlinWriter::write(Parallel &node) {
     return ;
 }
 
-void MerlinWriter::writeParallelPragma() {
+void MerlinWriter::writeParallelPragma(void) {
     write("#pragma ACCEL parallel ");
     return ;
 }

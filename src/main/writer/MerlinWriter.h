@@ -9,13 +9,13 @@ using namespace std;
 namespace TheIR {
     class MerlinWriter : public WriterBase {
         public:
-            MerlinWriter(string file_name): WriterBase(file_name) { }
+            MerlinWriter(ostream &os): WriterBase(os) { }
 
             using WriterBase::write;
 
             void write(Parallel &node);
 
-            void writeParallelPragma();
+            void writeParallelPragma(void);
 
             void writeParallelPragma(DesignSpaceCont<int> ds);
         private:

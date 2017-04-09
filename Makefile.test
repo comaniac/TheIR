@@ -3,8 +3,8 @@ GTEST_DIR = $(ROOT)/misc/googletest/googletest
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 CXXFLAGS += -g -Wall -Wextra -pthread -std=c++11
 
-SRC_DIR := $(ROOT)/src/main/$(notdir $(shell pwd)) 
-SRCS := $(filter-out $(SRC_DIR)/main.cpp, $(wildcard $(SRC_DIR)/*.cpp))
+SRC_DIR := $(ROOT)/src/main
+SRCS := $(filter-out $(SRC_DIR)/main.cpp $(SRC_DIR)/util/Logger.cpp, $(shell find $(SRC_DIR) -name "*.cpp"))
 OBJS := $(patsubst %.cpp, %.o, $(SRCS))
 
 # Google Test headers.
