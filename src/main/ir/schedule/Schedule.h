@@ -3,14 +3,14 @@
 #include "ir/IR.h"
 
 namespace TheIR {
-    class Schedule : public IR {
-        protected:
-            std::string name;
+class Schedule : public IR {
+   protected:
+    std::string name;
 
-        public:
-            virtual void func() = 0;
+   public:
+    virtual void func() = 0;
 
-            std::string getName() { return name; }
-    };
+    std::string getName() { return name; }
+};
 }
 #endif

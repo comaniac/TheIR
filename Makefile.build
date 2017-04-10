@@ -1,6 +1,9 @@
 BIN  := ./$(LEVEL)/bin
 
 SRCS := $(wildcard *.cpp) $(wildcard */*.cpp)
+ifdef KERNEL
+	SRCS += ./$(LEVEL)/$(KERNEL)
+endif
 OBJS := $(patsubst %.cpp, %.o, $(SRCS))
 
 CPPFLAGS += 

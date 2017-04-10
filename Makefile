@@ -5,7 +5,7 @@ TEST_PATH = src/test
 all: compile
 
 compile:
-	make -C $(PROJ_PATH)
+	make -C $(PROJ_PATH) KERNEL=$(KERNEL)
 
 install:
 	make -C $(PROJ_PATH) install

@@ -1,10 +1,10 @@
 #include <limits.h>
 #include <fstream>
-#include "../../../src/main/ir/schedule/Parallel.h"
-#include "../../../src/main/writer/WriterBase.h"
-#include "../../../src/main/writer/MerlinWriter.h"
 #include "../../../src/main/ds/DesignSpaceBase.h"
 #include "../../../src/main/ds/DesignSpaceCont.h"
+#include "../../../src/main/ir/schedule/Parallel.h"
+#include "../../../src/main/writer/MerlinWriter.h"
+#include "../../../src/main/writer/WriterBase.h"
 #include "gtest/gtest.h"
 
 using TheIR::WriterBase;
@@ -19,7 +19,7 @@ void cleanStream(ostringstream &os) {
 }
 
 // Test pragmas
-TEST(MerlinWriterTest, Pragma) {
+TEST(MerlinWriterTest, PragmaTest) {
     std::ostringstream os;
 
     MerlinWriter writer(os);
@@ -31,7 +31,6 @@ TEST(MerlinWriterTest, Pragma) {
     DesignSpaceCont<int> ds(1, 10, DesignSpaceBase::SEQ);
     writer.writeParallelPragma(ds);
     EXPECT_EQ("#pragma ACCEL parallel factor=auto_i_1_10\n", os.str());
-
 }
 
 TEST(MerlinWriterTest, ParallelTest) {
@@ -39,15 +38,16 @@ TEST(MerlinWriterTest, ParallelTest) {
     MerlinWriter writer(os);
 
     class PE : public Parallel {
-        public:
-            PE(int M): Parallel("PE", 2048, M) { ; }
-            void func() { ; }
+       public:
+        PE(int M) : Parallel("PE", 2048, M) { ; }
+        void func() { ; }
     };
     PE pe(7);
     writer.write(pe);
 
-    std::string GOLDEN_RESULT = std::string("for (int PE_task = 0; PE_task < 2048; PE_task ++) ") +
-    std::string("{\n#pragma ACCEL parallel factor=auto_i_1_7\n}\n");
+    std::string GOLDEN_RESULT =
+        std::string("for (int PE_task = 0; PE_task < 2048; PE_task ++) ") +
+        std::string("{\n#pragma ACCEL parallel factor=auto_i_1_7\n}\n");
 
     EXPECT_EQ(GOLDEN_RESULT, os.str());
 }

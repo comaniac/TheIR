@@ -11,15 +11,14 @@ using namespace TheIR;
 string Logger::currLogLevelStr = "info";
 
 // User input source code
-extern void kernel(WriterBase &writer);
+extern void kernel(WriterBase& writer);
 
 int main(void) {
     ofstream file;
 
-    try{
+    try {
         file.open(GEN_FILE_NAME, ios::out);
-    }
-    catch (const ifstream::failure& e) {
+    } catch (const ifstream::failure& e) {
         LOGGER.error("Cannot open" + string(GEN_FILE_NAME) + " for writing");
     }
 

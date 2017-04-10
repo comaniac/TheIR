@@ -15,18 +15,17 @@ void MerlinWriter::write(Parallel &node) {
     // write function
     writeln("}");
 
-    return ;
+    return;
 }
 
 void MerlinWriter::writeParallelPragma(void) {
     write("#pragma ACCEL parallel ");
-    return ;
+    return;
 }
 
 void MerlinWriter::writeParallelPragma(TheIR::DesignSpaceCont<int> ds) {
     writeParallelPragma();
-    writeln("factor=auto_i_" + to_string(ds.getMin()) + 
-            "_" + to_string(ds.getMax()));
-    return ;
+    writeln("factor=auto_i_" + to_string(ds.getMin()) + "_" +
+            to_string(ds.getMax()));
+    return;
 }
-
