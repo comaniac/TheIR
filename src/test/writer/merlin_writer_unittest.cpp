@@ -34,3 +34,20 @@ TEST(MerlinWriterTest, Pragma) {
 
 }
 
+TEST(MerlinWriterTest, ParallelTest) {
+    std::ostringstream os;
+    MerlinWriter writer(os);
+
+    class PE : public Parallel {
+        public:
+            PE(int M): Parallel("PE", 2048, M) { ; }
+            void func() { ; }
+    };
+    PE pe(7);
+    writer.write(pe);
+
+    std::string GOLDEN_RESULT = std::string("for (int PE_task = 0; PE_task < 2048; PE_task ++) ") +
+    std::string("{\n#pragma ACCEL parallel factor=auto_i_1_7\n}\n");
+
+    EXPECT_EQ(GOLDEN_RESULT, os.str());
+}
