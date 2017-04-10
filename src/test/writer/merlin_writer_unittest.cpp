@@ -13,6 +13,11 @@ using TheIR::DesignSpaceBase;
 using TheIR::DesignSpaceCont;
 using TheIR::Parallel;
 
+void cleanStream(ostringstream &os) {
+    os.str("");
+    os.clear();
+}
+
 // Test pragmas
 TEST(MerlinWriterTest, Pragma) {
     std::ostringstream os;
@@ -21,8 +26,7 @@ TEST(MerlinWriterTest, Pragma) {
 
     writer.writeParallelPragma();
     EXPECT_EQ("#pragma ACCEL parallel ", os.str());
-    os.str("");
-    os.clear();
+    cleanStream(os);
 
     DesignSpaceCont<int> ds(1, 10, DesignSpaceBase::SEQ);
     writer.writeParallelPragma(ds);
